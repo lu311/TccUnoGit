@@ -4,6 +4,7 @@
     Author     : Lu311
 --%>
 
+<%@page import="Actions.Menu"%>
 <%@page import="Beans.UsuarioConsultaBean"%>
 <%@page import="Actions.UsuarioSQL"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -33,6 +34,9 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <div> 
+            <%= Menu.menuTop(request.getSession())%>
+        </div>
 
         <div class="container">
 
@@ -49,7 +53,7 @@
                                         <%} else {%>
                                         Alteração de usuário<% }%>
                                     </legend> 
-                                    
+
                                     <h4><span class="label label-default">${msg}</span></h4>
                                     <input type="hidden"  id="fpkusuario" name="pkusuario" value="<%= bean.getPk_usuario()%>"/>
 

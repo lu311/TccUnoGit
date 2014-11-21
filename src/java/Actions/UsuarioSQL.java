@@ -20,7 +20,6 @@ import java.util.UUID;
  */
 public class UsuarioSQL {
 
-    private Object listaUsuario;
     private String sqlUsuarioConsulta = null;
     private ResultSet rs;
     private final MysqlCommand mc;
@@ -287,8 +286,7 @@ public class UsuarioSQL {
         }
         return 0;
     }
-    
-    
+
     /**
      * Meto que recebe um Pk_usuario e senha fazendo o reset no campo
      * codigo_zera_senha, retorna SQL de update
@@ -301,8 +299,8 @@ public class UsuarioSQL {
         return " UPDATE usuarios SET senha='" + senha + "',codigo_zera_senha=null "
                 + " WHERE pk_usuario = " + pk;
     }
-    
-     /**
+
+    /**
      * Meto que recebe e-mail e senha e verifica se tem no banco de dados
      * retorna True se tive uma correspondencia e se usuarios esta ativos
      *
@@ -325,6 +323,38 @@ public class UsuarioSQL {
         }
         mc.fecharComando();
         return false;
+    }
+
+    /**
+     * Meto que recebe e-mail e senha e verifica se tem no banco de dados
+     * retorna UsuarioBean se tive uma correspondencia e se usuario esta ativos
+     *
+     * @param email
+     * @param senha
+     * @return
+     */
+    public UsuarioConsultaBean validaUsuario2(String email, String senha) {
+        UsuarioConsultaBean a = new UsuarioConsultaBean();
+        sqlUsuarioConsulta = "select pk_usuario, nome_usuario, email, ms_ativo, data_hora, adm FROM usuarios where "
+                + " email = '" + email + "' and senha='" + senha + "' and ms_ativo = true";
+        rs = mc.select(sqlUsuarioConsulta);
+
+        try {
+            if (rs.next()) {
+                a.setPk_usuario(rs.getInt("pk_usuario"));
+                a.setNome_usuario(rs.getString("nome_usuario"));
+                a.setEmail(rs.getString("email"));
+                a.setMs_ativo(rs.getBoolean("ms_ativo"));
+                a.setAdm(rs.getBoolean("adm"));
+                a.setData_hora(rs.getString("data_hora"));
+            } else {
+                a.setNome_usuario("usuario?");
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro no metodo validaUsuario2 \n" + e.getMessage());
+        }
+        mc.fecharComando();
+        return a;
     }
 
 }

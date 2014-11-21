@@ -4,6 +4,7 @@
     Author     : Lu311
 --%>
 
+<%@page import="Actions.Menu"%>
 <%@page import="Beans.MensagemConsultaBean"%>
 <%@page import="Actions.MensagemSQL"%>
 <%@page import="Beans.GrupoBean"%>
@@ -39,7 +40,9 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-
+        <div> 
+           <%= Menu.menuTop(request.getSession())%>
+        </div>
         <!-- Form  - START -->
         <div class="container">
             <div class="row">
@@ -113,11 +116,11 @@
                                                         <tr>
                                                         <div class="panel panel-default">
                                                             <div class="panel-heading text-center "><i class="icon-chevron-left"></i>
-                                                                    Data: <%= p.getData_hora()%> <br>
-                                                                    Usuário remetente: <%= p.getNome_usuario_remente()%>  <br>
-                                                                    Grupo destinatario: <%= p.getNome_grupo_destinatario()%> </div>
+                                                                Data: <%= p.getData_hora()%> <br>
+                                                                Usuário remetente: <%= p.getNome_usuario_remente()%>  <br>
+                                                                Grupo destinatario: <%= p.getNome_grupo_destinatario()%> </div>
                                                             <div class="panel-body text-center">
-                                                              <%= p.getMensagem()%> 
+                                                                <%= p.getMensagem()%> 
                                                             </div>
 
                                                             </tr>	

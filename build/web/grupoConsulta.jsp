@@ -4,11 +4,13 @@
     Author     : Lu311
 --%>
 
+<%@page import="Actions.Menu"%>
 <%@page import="Actions.GrupoSQL, Beans.GrupoBean"%>
 <%@page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="utf-8" />
         <title>consulta de grupos</title>
@@ -21,6 +23,10 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
+
+        <div> 
+         <%= Menu.menuTop(request.getSession())%>
+        </div>
 
         <div class="container">
 
@@ -118,8 +124,8 @@
                     var id = codigo;
                     location.href = "grupoCadastro.jsp?pkgrupo=" + id.toString();
                 }
-                
-                
+
+
                 function usuarioDeleta(codigo) {
                     var id = codigo;
                     location.href = "controleGrupo.jsp?action=deleta&pkgrupo=" + id.toString();

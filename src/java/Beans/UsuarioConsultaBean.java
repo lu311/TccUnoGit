@@ -15,6 +15,7 @@ public class UsuarioConsultaBean {
     private String nome_usuario;
     private String email;
     private boolean ms_ativo;
+    private boolean adm;
     private String data_hora;
 
     /**
@@ -95,6 +96,20 @@ public class UsuarioConsultaBean {
      */
     public void setData_hora(String data_hora) {
         this.data_hora = data_hora;
+    }
+
+    /**
+     * @return the adm
+     */
+    public boolean isAdm() {
+        return adm;
+    }
+
+    /**
+     * @param adm the adm to set
+     */
+    public void setAdm(boolean adm) {
+        this.adm = adm;
     }
 
 }

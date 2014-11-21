@@ -4,6 +4,7 @@
     Author     : Lu311
 --%>
 
+<%@page import="Actions.Menu"%>
 <%@page import="Beans.MensagemConsultaBean"%>
 <%@page import="Actions.MensagemSQL"%>
 <%@page import="Beans.GrupoBean"%>
@@ -39,7 +40,9 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-
+        <div> 
+           <%= Menu.menuTop(request.getSession())%>
+        </div>
         <!-- Form  - START -->
         <div class="container">
             <div class="row">

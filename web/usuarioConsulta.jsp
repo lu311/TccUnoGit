@@ -4,6 +4,7 @@
     Author     : Lu311
 --%>
 
+<%@page import="Actions.Menu"%>
 <%@page import="Actions.UsuarioSQL, Beans.UsuarioConsultaBean"%>
 <%@page import="java.util.List" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,6 +23,11 @@
     </head>
     <body>
 
+        <div> 
+          <%= Menu.menuTop(request.getSession())%>
+        </div>
+
+
         <div class="container">
 
             <!-- Form  - START -->
@@ -31,8 +37,7 @@
                         <div class="well well-sm">
                             <form class="form-horizontal" method="post">
                                 <fieldset>
-                                    <legend class="text-center header">Consulta de usuários</legend>    
-
+                                    <legend class="text-center header">Consulta de usuários  </legend>  
                                     <legend class="text-center header">
                                         <div class="form-group">
                                             <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-user bigicon"></i></span>
@@ -120,8 +125,8 @@
                     var id = codigo;
                     location.href = "usuarioCadastro.jsp?pkusuario=" + id.toString();
                 }
-                
-                
+
+
                 function usuarioDeleta(codigo) {
                     var id = codigo;
                     location.href = "controleUsuario.jsp?action=deleta&pkusuario=" + id.toString();

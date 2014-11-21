@@ -4,6 +4,7 @@
     Author     : Lu311
 --%>
 
+<%@page import="Actions.Menu"%>
 <%@page import="Beans.GrupoBean"%>
 <%@page import="Actions.GrupoSQL"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -33,7 +34,9 @@
         <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body>
-
+        <div> 
+           <%= Menu.menuTop(request.getSession())%>
+        </div>
         <div class="container">
 
             <!-- Form - START -->
@@ -72,7 +75,8 @@
                     </div>
                 </div>
             </div>
-
+        </div>
+                                        
             <style>
                 .header {
                     color:#36A0FF;
@@ -86,7 +90,7 @@
             </style>
             <!-- Contact Form - END -->
 
-        </div>
+       
 
     </body>
 </html>

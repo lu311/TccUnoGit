@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class GrupoSQL {
 
-    private Object listaGrupo;
     private String sqlGrupoConsulta = null;
     private ResultSet rs;
     private final MysqlCommand mc;

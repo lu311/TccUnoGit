@@ -4,6 +4,7 @@
     Author     : Lu311
 --%>
 
+<%@page import="Beans.UsuarioConsultaBean"%>
 <%@page import="Actions.UsuarioSQL"%>
 <%@page import="DataBases.MysqlCommand"%>
 <%@page import="Beans.UsuarioBean"%>
@@ -159,13 +160,31 @@
             }
             try {
                 if (us.validaUsuario(email, senha)) {
-                    request.getRequestDispatcher("principal.jsp").forward(request, response);
+                    us = new UsuarioSQL();
+                    UsuarioConsultaBean a = us.validaUsuario2(email, senha);
+
+                    HttpSession sessao = request.getSession(true);
+                    sessao.setAttribute("usuarioid", a.getPk_usuario());
+                    sessao.setAttribute("usuario", a.getNome_usuario());
+                    sessao.setAttribute("email", a.getEmail());
+                    if (a.isAdm()) {
+                        sessao.setAttribute("adm", "true");
+                    } else {
+                        sessao.setAttribute("adm", "");
+                    }
+
+                   
+                    
+                    //request.getRequestDispatcher("principal.jsp").forward(request, response);
+                    //if (a.isAdm()) {
+                         request.getRequestDispatcher("principal.jsp").forward(request, response);
+                    //} else {
+                    //    request.getRequestDispatcher("leituraMensagem.jsp?grupo=0&user=" + a.getPk_usuario()).forward(request, response);
+                    // }
                 } else {
                     request.setAttribute("msgLogin", "e-mail ou senha invalidos!");
+                    request.getRequestDispatcher("index.jsp").forward(request, response);
                 }
-
-                request.getRequestDispatcher("index.jsp").forward(request, response);
-
             } catch (Exception e) {
                 out.print("Erro na validação de e-mail e senha: \n" + e.getMessage());
             }
